@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, React } from "react";
 
 interface StickyNavProps {
   activeSection: string;
@@ -11,8 +11,8 @@ export function StickyNav({ activeSection }: StickyNavProps) {
     const handleScroll = () => {
       setIsSticky(window.scrollY > 100);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const scrollToSection = (sectionId: string) => {
@@ -23,20 +23,21 @@ export function StickyNav({ activeSection }: StickyNavProps) {
       const offsetPosition = elementPosition + window.pageYOffset - offset;
       window.scrollTo({
         top: offsetPosition,
-        behavior: 'smooth'
+        behavior: "smooth",
       });
     }
   };
 
   const sections = [
-    { id: 'overview', label: 'Executive Overview' },
-    { id: 'opportunities', label: 'Opportunities' },
+    { id: "overview", label: "Executive Overview" },
+    { id: "opportunities", label: "Opportunities" },
+    { id: "test-section", label: "Test Section" },
   ];
 
   return (
     <nav
       className={`sticky top-0 z-50 bg-white border-b border-gray-200 transition-shadow ${
-        isSticky ? 'shadow-md' : ''
+        isSticky ? "shadow-md" : ""
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 py-4">
@@ -47,8 +48,8 @@ export function StickyNav({ activeSection }: StickyNavProps) {
               onClick={() => scrollToSection(section.id)}
               className={`whitespace-nowrap px-4 py-2 rounded-full transition-colors ${
                 activeSection === section.id
-                  ? 'bg-[#F97316] text-white'
-                  : 'text-[#6B7280] hover:text-[#1A1A1A] hover:bg-gray-100'
+                  ? "bg-[#F97316] text-white"
+                  : "text-[#6B7280] hover:text-[#1A1A1A] hover:bg-gray-100"
               }`}
             >
               {section.label}
